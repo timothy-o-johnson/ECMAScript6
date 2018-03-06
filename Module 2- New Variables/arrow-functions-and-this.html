@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Arrow functions examples</title>
+</head>
+
+<body>
+
+  inspect and ye shall see!
+
+  <script>
+
+    function calculateBill(total, tax = 0.13, tip = 0.15) {
+      console.log(tax);
+      return (total * (1 + tax)) + (total * tip);
+    }
+
+  const totalBill = calculateBill(100, undefined , .20);
+  console.log(totalBill);
+
+</script>
+
+
+</body>
+
+</html>
