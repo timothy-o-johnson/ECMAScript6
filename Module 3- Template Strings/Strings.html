@@ -1,30 +1,37 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Arrow Functions</title>
+  <style>
+    .h1 {
+      background: #ffc600;
+    }
+  </style>
+
 </head>
+
 <body>
 
-<script>
+  <script>
 
-  // Template Strings intro
-  const name = 'Snickers';
-  const age = 2; 
-  const sentence = 'My dog ' + name + ' is ' + age * 7 + ' years old.';
-  const sentenceBacTic = `My dog ${name} is ${age * 7} years old in dog years.`;
-  
-  
-  //HTML Fragments with Template Literals
-  const person = { 
+    // Template Strings intro
+    const name = 'Snickers';
+    const age = 2;
+    const sentence = 'My dog ' + name + ' is ' + age * 7 + ' years old.';
+    const sentenceBacTic = `My dog ${name} is ${age * 7} years old in dog years.`;
+
+
+    //HTML Fragments with Template Literals
+    const person = {
       name: 'Tim',
       job: 'Software Engineer',
       city: 'Detroit',
       bio: '"avid dancer and passion pursuer"',
-  }
+    }
 
-  const markup = `
+    const markup = `
     <div class="person">
       <h2>
         ${person.name}
@@ -35,12 +42,11 @@
     <div>
   `;
 
-  const dogs = [
-    { name: 'Snickers', age: 2},
-    { name: 'Hugo', age: 8},
-    { name: 'Snoop', age: 1},
-
-  ] ; 
+    const dogs = [
+      { name: 'Snickers', age: 2 },
+      { name: 'Hugo', age: 8 },
+      { name: 'Snoop', age: 1 },
+    ];
 
     const markup2 = `
     Which is your favorite dog? Well..
@@ -48,10 +54,36 @@
         ${dogs.map(dog => `<li> ${dog.name} is my favorite dog </li>`).join("")}
       </ul>
     `
-  
-  document.body.innerHTML = markup;
-  document.body.innerHTML = markup2;
+    //Tagged Template Literals
+    /*you have string, you pass in the regular string that you want, then you get all the pieces and it's up to you to gather all the pieces and craft it together. */
 
-</script>
+    const friendName = 'Hilary';
+    const friendAge = 26;
+    const friendLocation = 'someplacefar'
+
+
+    function highlight(strings, ...values) {
+      let str = '';
+      strings.forEach((string, i) => {
+        //str += string + (values[i] || '');
+        //debugger;
+
+        str += `${string} <span contenteditable class="h1">${values[i] || ""}</span>`;
+      });
+
+      return str;
+
+    }
+
+    const sentenceTL = highlight`This is my best friend, ${friendName}. They are ${friendAge} years old. We met in ${friendLocation}.`
+
+    console.log(sentenceTL);
+
+    document.body.innerHTML = markup;
+    document.body.innerHTML = markup2;
+    document.body.innerHTML = sentenceTL;
+
+  </script>
 </body>
+
 </html>
