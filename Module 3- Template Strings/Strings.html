@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Arrow Functions</title>
+  <title>ES 6: Strings </title>
   <style>
     .h1 {
       background: #ffc600;
@@ -14,13 +14,17 @@
 
 <body>
 
+  <div class="bio">
+
+  </div>
+
   <script>
 
     // Template Strings intro
-    const name = 'Snickers';
+    const dogName = 'Snickers';
     const age = 2;
-    const sentence = 'My dog ' + name + ' is ' + age * 7 + ' years old.';
-    const sentenceBacTic = `My dog ${name} is ${age * 7} years old in dog years.`;
+    const sentence = 'My dog ' + dogName + ' is ' + age * 7 + ' years old.';
+    const sentenceBacTic = `My dog ${dogName} is ${age * 7} years old in dog years.`;
 
 
     //HTML Fragments with Template Literals
@@ -79,9 +83,41 @@
 
     console.log(sentenceTL);
 
+    //Tagged Template Exercise: Abbreviation Tag
+    const dict = {
+      'Infinite Jest': 'favorite book',
+      'Satanic Verses': 'a damn fine book',
+      'Don Quixote de La Mancha': 'a suprisingly good book'
+    };
+
+    function addAbbreviations(strings, ...values) {
+      const abbreviated = values.map(value => {
+        if (dict[value]) {
+          return `<abbr title="${dict[value]}">${value}</abbr>`
+        }
+        return value;
+      })
+      
+      return strings.reduce((sentenceAT, string, i) => {
+        return `${sentenceAT}${string}${abbreviated[i] || ''}`;
+      }, '')
+    }
+
+    const firstName = 'Luke';
+    const lastName = 'Abbot';
+    const sentenceAT = addAbbreviations`Hello! My name is ${firstName} ${lastName} and Tim tells me that these are some wonderful books: ${'Infinite Jest'}, ${'Satanic Verses'}, and ${'Don Quixote de La Mancha'}.`;
+
+    const bio = document.querySelector('.bio');
+    const p = document.createElement('p');
+    p.innerHTML = sentenceAT;
+    bio.appendChild(p);
+
+  /*
     document.body.innerHTML = markup;
     document.body.innerHTML = markup2;
-    document.body.innerHTML = sentenceTL;
+    document.body.innerHTML = sentenceTL; */
+
+
 
   </script>
 </body>
