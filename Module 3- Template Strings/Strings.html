@@ -2,8 +2,7 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-HEAD
+  <meta charset="UTF-8"> HEAD
   <title>ES 6: Strings </title>
 
   <style>
@@ -16,7 +15,6 @@ HEAD
 
 <body>
 
-HEAD
   <div class="bio">
 
   </div>
@@ -66,15 +64,13 @@ HEAD
     const friendName = 'Hilary';
     const friendAge = 26;
     const friendLocation = 'someplacefar'
-HEAD
-
 
     function highlight(strings, ...values) {
       let str = '';
       strings.forEach((string, i) => {
         //str += string + (values[i] || '');
         //debugger;
-        
+
         str += `${string} <span contenteditable class="h1">${values[i] || ""}</span>`;
       });
 
@@ -86,7 +82,6 @@ HEAD
 
     console.log(sentenceTL);
 
-HEAD
     //Tagged Template Exercise: Abbreviation Tag
     const dict = {
       'Infinite Jest': 'favorite book',
@@ -101,7 +96,7 @@ HEAD
         }
         return value;
       })
-      
+
       return strings.reduce((sentenceAT, string, i) => {
         return `${sentenceAT}${string}${abbreviated[i] || ''}`;
       }, '')
@@ -111,15 +106,14 @@ HEAD
     const lastName = 'Abbot';
     const sentenceAT = addAbbreviations`Hello! My name is ${firstName} ${lastName} and Tim tells me that these are some wonderful books: ${'Infinite Jest'}, ${'Satanic Verses'}, and ${'Don Quixote de La Mancha'}.`;
 
-    const bio = document.querySelector('.bio');
-    const p = document.createElement('p');
-    p.innerHTML = sentenceAT;
-    bio.appendChild(p);
+    /*  const bio = document.querySelector('.bio');
+      const p = document.createElement('p');
+      p.innerHTML = sentenceAT;
+      bio.appendChild(p);*/
 
-  /*
     document.body.innerHTML = markup;
     document.body.innerHTML = markup2;
-    document.body.innerHTML = sentenceTL; */
+    document.body.innerHTML = sentenceTL;
 
   </script>
 </body>
