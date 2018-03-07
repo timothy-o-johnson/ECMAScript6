@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ES 6: Destructuring </title>
+
+</head>
+
+<body>
+  <script>
+
+    const details = ['Luke Abbot', 48202, 'tjrealco.com']
+    const [name, id, website] = details;
+    console.log(name, id, website, details);
+
+    const data = 'Basketball, Languages, 72712, tim, stuff, cool';
+    const [itemName, category, sku, inventory] = data.split(',');
+
+    // Using the rest operator to store many fields in one variable
+    const team = ['Luke', 'Ted', 'Hilary', 'Jon', 'Vincent', 'Stafan'];
+    const [captain, assistant, ...players] = team;
+
+    //Swapping Variables with Destructuring
+
+    let inRing = 'Hulk Hogan';
+    let onSide = "The Rock";
+
+    console.log(inRing, onSide);
+    [inRing, onSide] = [onSide, inRing];
+    console.log(inRing, onSide);
+
+    //Destructuring Functions - Multiple returns and named defaults
+    function convertCurrency(amount) {
+      const converted = {
+        USD: amount * .76,
+        GPB: amount * .53,
+        AUD: amount * 1.01,
+        Mex: amount * 13.30,
+      };
+      return converted;
+    }
+
+    const { USD, AUD } = convertCurrency(100);
+    console.log(USD, AUD);
+
+    //to recieve empty parameters, functions must have all parameters set with default parameters and have empty bracket to indicate what to do with empty objects
+    function tipCalc({total = 100, tip = 0.15, tax = 0.13} = {}){
+     return total + (tip * total) + (total * tax);
+    }
+
+    const bill = tipCalc();
+    console.log(bill);
+    
+    
+
+  </script>
+</body>
+
+</html>

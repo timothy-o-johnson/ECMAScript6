@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title> ES6: Iterable & Looping </title>
+
+</head>
+
+<body>
+  <script>
+    const bands = ['Pavement', 'JSBX', 'Saul Williams', 'Busdriver'];
+
+    // for loop
+    console.log('\nFor Loop');
+    for (let i = 0; i < bands.length; i++) {
+      console.log(bands[i]);
+    }
+
+
+    // for-each loop
+    console.log('\nFor-Each Loop');
+
+    bands.forEach((band) => {
+      console.log(band);
+      if (band === 'JSBX') {
+        // can't use BREAK or CONTINUE
+        console.log(band);
+      }
+    });
+
+    // for-in loop is problematic because it iteratest through all items in the prototype items another stuff
+    console.log('\nFor-In Loop');
+
+    for (const index in bands) {  // <=== the IN goes here
+      console.log(`${(parseInt(index) + 1)}. ${bands[index]}`);
+    }
+
+    //for-of loop
+    console.log('\nFor-Of Loop');
+    for (const band of bands) { // <=== the OF goes here
+      console.log(band);
+      if (band === 'Saul Williams') {
+        //break;
+        console.log('   "Written on the palm of our hands!"');
+      }
+      if (band === 'JSBX') {
+        continue;
+      }
+      
+    }
+
+
+  </script>
+</body>
+
+</html>
