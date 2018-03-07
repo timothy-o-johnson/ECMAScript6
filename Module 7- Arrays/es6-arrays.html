@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title> ES 6: An Array Of Array Improvements</title>
+  <style>
+  </style>
+</head>
+
+<body>
+  <div class="people">
+    <p>Person 01</p>
+    <p>Person 02</p>
+    <p>Person 03</p>
+    <p>Person 04</p>
+    <p>Person 05</p>
+  </div>
+
+  <script>
+
+    //Array From
+    const people = document.querySelectorAll('.people p');
+    console.log(people);
+
+    const peopleArray = Array.from(people);
+    console.log(peopleArray);
+
+    const names = peopleArray.map(person => person.textContent);
+    console.log(names);
+
+    let counter = 1;
+
+    console.log("Is this printing AND referencing the HTML?");
+    
+    const peopleArray2 = Array.from(people, person => {
+      console.log(person);
+      
+      return `p-p-person ${counter++}`;
+      
+    });
+    console.log(peopleArray2);
+
+    function sumAll() {
+      console.log(arguments);
+      return Array.from(arguments).reduce((prev, next) => prev + next, 0);
+    }
+
+    //Array Of
+    const ages = Array.of(12, 3, 23, 556);
+
+    const sumAllTest = sumAll(123, 123, 123);
+
+    console.log(`ages = ${ages}`);
+    
+    
+  </script>
+</body>
+
+</html>
