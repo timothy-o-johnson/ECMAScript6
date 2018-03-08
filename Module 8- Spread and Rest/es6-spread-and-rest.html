@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>The ...Spread and ... Rest Operator </title>
+  <style>
+  </style>
+</head>
+
+<body>
+  <script>
+    const featured = ['Deep Dish', 'Pepperoni', 'Hawaiian'];
+    const specialty = ['Meatzza', 'Spicy Mama', 'Margherita'];
+    const pizzas = featured.concat(specialty);
+    const pizzasWithVeg = [...featured, '*** VEGALICIOUS ***', ...specialty];
+
+    const me = ["Timothy"] 
+    console.log(me); //["Timothy"]
+
+    const name = [..."Timothy"]
+    console.log(name); //  ["T", "i", "m", "o", "t", "h", "y"]
+    
+    
+    const deepDish = {
+      pizzaName: 'Deep Dish',
+      size: 'Medium',
+      ingredients: ['Marinara', 'Italian Sausage', 'Dough', 'Cheese']
+    };
+
+    
+    console.log(pizzas); //["Deep Dish", "Pepperoni", "Hawaiian", "Meatzza", "Spicy Mama", "Margherita"]
+    
+    console.log(pizzasWithVeg);
+    
+    // new way to copy
+    const fridayPizzas = pizzas; // but that's just a pointer
+    const tuesdayPizzas = [].concat(pizzas); // old way
+    const thursdayPizzas = [...pizzas]; // new way creates a new array, not just a pointer
+
+    fridayPizzas[0] = "Canadian";
+    console.log(`FRIDAY pizzas are... ${fridayPizzas}`);
+    console.log(`PIZZA pizzas are... ${pizzas}`);
+    console.log(`TUESDAY pizzas are... ${tuesdayPizzas}`);
+    console.log(tuesdayPizzas);
+    console.log(`THURSDAY pizzas are... ${thursdayPizzas}`);
+    
+
+
+  </script>
+</body>
+
+</html>
