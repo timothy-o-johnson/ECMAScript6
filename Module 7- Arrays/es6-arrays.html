@@ -8,7 +8,17 @@
   </style>
 </head>
 
+
 <body>
+<ul><h1>In this module we cover</h1></ul>
+<li> Array.from </li>
+<li> Array of </li>
+<li> Array in </li>
+<li> Array .some() </li>
+<li> Array .every() </li>
+<li> Array .reduce </li>
+
+<section>
   <div class="people">
     <p>Person 01</p>
     <p>Person 02</p>
@@ -16,6 +26,7 @@
     <p>Person 04</p>
     <p>Person 05</p>
   </div>
+</section>
 
   <script>
 
@@ -53,7 +64,24 @@
 
     console.log(`ages = ${ages}`);
     
+    //Array .some() and .every()
+    const ages2= [32, 15, 19, 12];
+    const youngins = [1, 2, 2, 3];
+
+    //is there at least one adult present?
+    const adultPresent = ages2.some(age => age >= 18);
+    console.log(adultPresent);
+  
+    // is everyone old enough to drink?
+    const allOldEnough = ages2.every(age => age >= 19);
+    console.log(allOldEnough);
+
+     // is everyone quite young?
+    const allQuiteYoung = youngins.every(age => age <= 5);
+    console.log(allQuiteYoung);
     
+
+
   </script>
 </body>
 
