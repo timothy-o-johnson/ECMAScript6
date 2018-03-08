@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title> </title>
+  <style>
+  </style>
+</head>
+
+<body>
+  <script>
+    
+    //how to assign values to field when the variable name is the same as the parameter
+    const first = 'chicky';
+    const last = 'robinson';
+    const age = 3;
+    const breed = 'rhode island red';
+    const chicken = {
+          first: first,
+          last: last,
+          age: age,
+          breed: breed,       
+    }
+
+     const chickenNew = {
+          first,
+          last,
+          age,
+          breed: 'breedy',       
+    }
+
+console.log(chicken);
+console.log(chickenNew);
+
+    // a new way to create functions within an object, won't mess with the scoping of any variables
+
+    const modal = {
+      create(parameter) { // previously create: function() {...}
+
+      }
+    }
+
+
+//Computed Properties Keys, take 1
+
+    function invertColor(color){
+      return '#'+ ("000000" + (0xFFFFFF ^ parseInt(color.substring(1),16)).toString(16)).slice(-6);
+    }
+    
+
+const key = 'pocketColor';
+const value = '#ffc600';
+
+const tShirt = {
+  [key]: value,
+  [`${key}Opposite`]: invertColor(value)
+}
+
+console.log(tShirt);
+
+//Computed Properties Keys, take 2
+
+  const keys = ['size', 'color', 'weight'];
+  const values = ['medium', 'red', 100];
+
+  const shirt = {
+    [keys.shift()]: values.shift(),
+    [keys.shift()]: values.shift(),
+    [keys.shift()]: values.shift(),
+  }
+
+  console.table(shirt); // {size: "medium", color: "red", weight: 100}
+  
+  </script>
+</body>
+
+</html>
