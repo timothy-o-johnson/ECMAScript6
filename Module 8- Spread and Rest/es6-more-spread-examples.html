@@ -3,10 +3,11 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>ES6- More Spread Examples</title>
+  <title>ES6- More Spread (... and Rest!) Examples</title>
   <style>
   </style>
 </head>
+
 <body>
   <div class="people">
     <p>People 01</p>
@@ -16,61 +17,103 @@
   </div>
 
   <script>
-  //using spread to remove an object from an array of objects
-  const comments = [
-    {id: 123456, text: 'I love 1 of your chickens!'},
-    {id: 234567, text: 'I love 2 of your chickens!'},
-    {id: 345678, text: 'I HATE your chickens!'},
-    {id: 456789, text: 'I love 4 of your chickens!'},
-  ];
 
-  console.log(`comments`);
-  console.log(comments);
+    //rest param
+    function convertCurrency(rate, tax, tip, ...amounts){
+      return amounts.map(amount => ((amount * (1+rate)) * (tax + tip + 1)));
+    }
 
-  const id = 345678;
-  const commentIndex = comments.findIndex(comment => comment.id === id);
-  console.log(commentIndex);
+    const amounts = convertCurrency(.10, .10, .20, 50, 1, 500);
+    console.log(amounts);
 
-  let commentsSansMeanComment = [comments.slice(0, commentIndex), comments.slice(commentIndex + 1)];
-  
-  console.log(`commentsSansMeanComment2`);
-  console.log(commentsSansMeanComment);
+    //rest for deconstructing
 
-  let commentsSansMeanComment2 = [...comments.slice(0, commentIndex), ...comments.slice(commentIndex + 1)];
-  
-  console.log(`commentsSansMeanComment2`);
-  console.log(commentsSansMeanComment2);
-  
+    const runner = ['Karla Jamaica', 123, 5.5, 3, 6, 35];
+
+    let runnerObject = {
+      name: '',
+      runnerID: '',
+      runs: [],
+    };
+
+    runnerObject = runner;
+    console.log(runnerObject.name);
+
+    const [name, id, runs] = runner;
+    console.log(name, id, runs);
+   
+    const [name2, id2, ...runs2] = runner;
+    console.log(name2, id2, runs2);
+
+    //spreading into a function
+    const turtles = ['Leonardo', 'Michaelangel', 'Donetello'];
+    const newTurtles = ['Van Gogh', 'Picasso'];
+
+    console.log(turtles.push(...newTurtles));
+    console.log(turtles);
+
+    const name3 = ['Detroit', 'Robinson', 'Detroit', 'Robinson'];
+    function sayHi(first, last) {
+      alert(`Hey there ${first} ${last}`);
+    }
+
+    sayHi(...name3);
+
+    //using spread to remove an object from an array of objects
+    const comments = [
+      { id: 123456, text: 'I love 1 of your chickens!' },
+      { id: 234567, text: 'I love 2 of your chickens!' },
+      { id: 345678, text: 'I HATE your chickens!' },
+      { id: 456789, text: 'I love 4 of your chickens!' },
+    ];
+
+    console.log(`comments`);
+    console.log(comments);
+
+    const id3 = 345678;
+    const commentIndex = comments.findIndex(comment => comment.id === id3);
+    console.log(commentIndex);
+
+    let commentsSansMeanComment = [comments.slice(0, commentIndex), comments.slice(commentIndex + 1)];
+
+    console.log(`commentsSansMeanComment2`);
+    console.log(commentsSansMeanComment);
+
+    let commentsSansMeanComment2 = [...comments.slice(0, commentIndex), ...comments.slice(commentIndex + 1)];
+
+    console.log(`commentsSansMeanComment2`);
+    console.log(commentsSansMeanComment2);
 
 
-  //using spread to get to elements within an object
-  const deepDish = {
+
+    //using spread to get to elements within an object
+    const deepDish = {
       pizzaName: 'Deep Dish',
       size: 'Medium',
       ingredients: ['Marinara', 'Italian Sausage', 'Dough', 'Cheese']
     };
 
-  const shoppingList = ['milk', 'celery', 'chicken feed', ...deepDish.ingredients];
-  console.log(shoppingList);
-  
-
-  //using ....spread as an alternative to array.from
-  const people = Array.from(document.querySelectorAll('.people p'));
-  console.log(`Making a people array using Array.from()`);
-  console.log(people);
-  
-
-  const town = [...document.querySelectorAll('.people p')];
-  console.log(`Making a town array using ... spread`);
-  console.log(town);
-  
-  const names = people.map(person => person.textContent);
-  console.log(names);
-  
+    const shoppingList = ['milk', 'celery', 'chicken feed', ...deepDish.ingredients];
+    console.log(shoppingList);
 
 
+    //using ....spread as an alternative to array.from
+    const people = Array.from(document.querySelectorAll('.people p'));
+    console.log(`Making a people array using Array.from()`);
+    console.log(people);
 
-  
+
+    const town = [...document.querySelectorAll('.people p')];
+    console.log(`Making a town array using ... spread`);
+    console.log(town);
+
+    const names = people.map(person => person.textContent);
+    console.log(names);
+
+
+
+
+
   </script>
 </body>
 
