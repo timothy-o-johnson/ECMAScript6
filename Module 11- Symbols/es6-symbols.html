@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ES6: Symbols</title>
+  <style>
+  </style>
+</head>
+
+<body>
+  The 6 Existing JS primitive types: number string object null undefined boolean new --> SYMBOL
+
+  <script>
+    /*---------- FIRST and ONLY VIDEO: all about symbols   ------- */
+    const detroit = Symbol('Detroit'); // symbol is unique i.e. sad4f6s4f6sf6s6168a4fd13sdfa8s46
+    const bentonville = Symbol('Detroit');
+
+    detroit === bentonville //false
+    detroit == bentonville  //false
+
+    const classroom = {
+      [Symbol('Mark')]: { grade: 50, gender: 'male' },
+      [Symbol('Olivia')]: { grade: 80, gender: 'female' },
+      [Symbol('Olivia')]: { grade: 50, gender: 'shemale' },
+    }
+
+    console.log(classroom); //checkout the properties,
+
+    // cannot be looped over
+    for (person in classroom) {
+      console.log(person);
+    }
+
+    //since data cannot be looped over. it's sorta safe
+    // but to get data use the following
+    console.log(Object.getOwnPropertySymbols(classroom));
+
+    //symbols aren't the actual objects, they are just the property keys
+    const symbolism = Object.getOwnPropertySymbols(classroom);
+    symbolism.map(sym => console.log(`${classroom[sym]}`));
+
+    const data = symbolism.map(sym => classroom[sym]);
+
+    console.log(data);
+
+  </script>
+</body>
+
+</html>
