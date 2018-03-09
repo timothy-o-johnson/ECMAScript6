@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title> ES 6: Promises</title>
+  <style>
+  </style>
+</head>
+
+<body>
+
+  <div class="bio">
+
+  </div>
+
+  <script>
+
+    /*---------- FOURTH VIDEO: working with multiple promises   ------- */
+
+
+    const weatherPromise = new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({ temp: 65, conditions: 'Sunny with a chance of meatballs' });
+      }, 2000);
+    });
+
+    const tweetPromise = new Promise((resolve) => {
+      resolve(['I like pie!', 'I like cake!']);
+    });
+
+    Promise
+      .all([weatherPromise, tweetPromise])
+      .then(responses => {
+        console.log(responses);
+
+        // turn this into a more readible formal
+        const [weatherResponse, tweetResponse] = responses
+        console.log(weatherResponse, tweetResponse);
+      })
+
+
+    /*---------- part 2   ------- */
+
+    const postsPromise = fetch('https://api.sunrise-sunset.org/json?lat=45.4132457&lng=-75.6908846');
+    const streetCarsPromise = fetch('http://data.ratp.fr/api/datasets/1.0/search/?q=paris')
+
+    Promise
+      .all([postsPromise, streetCarsPromise])
+      .then(responses => {
+        return Promise.all(responses.map(res => res.json()))
+      })
+      .then(responses => {
+        console.log(responses);
+
+      })
+
+
+    /*---------- THIRD VIDEO: chaining promises + flow control  ------- */
+    const posts = [
+      { title: 'I love JavaScript', author: 'Vincent Hilton', id: 1 },
+      { title: 'CSS', author: 'Ted Weiss', id: 2 },
+      { title: 'diggy dang dang doodle', author: 'Stefan Holodnick', id: 3 },
+    ];
+
+    const authors = [
+      { name: 'Vincent Hilton', twitter: '@someTwitterHandle', bio: 'emerged from under a desk to work at WoodlandDirect' },
+      { name: 'Ted Weiss', twitter: '@someTwitterHandle', bio: 'first child torn from the webs of the internet' },
+      { name: 'Stefan Holodnick', twitter: '@someTwitterHandle', bio: 'lives off of the binary milk of his computer mother' },
+    ];
+
+    function getPostById(id) {
+      //debugger;
+      // create a new promise
+      return new Promise((resolve, reject) => {
+        // using a settimeout to mimick a database
+        setTimeout(() => {
+          // find the post we want
+          const post = posts.find(post => post.id === id);
+          if (post) {
+            resolve(post); // send post back
+          } else {
+            reject(Error('No Post Was Found!'));
+          }
+        }, 200);
+      });
+    }
+
+    function hydrateAuthor(post) {
+      //debugger;
+      // create a new promise
+      return new Promise((resolve, reject) => {
+        // find the author
+        const authorDetails = authors.find(author => author.name === post.author)
+        // "hydrate" the post object with the author object
+        if (authorDetails) {
+          post.author = authorDetails;
+          resolve(post);
+        } else {
+          reject(Error('Cannot find the friggin\' author!'))
+        }
+      });
+    }
+
+    getPostById(2)
+      .then(post => {
+        console.log(post);
+        return hydrateAuthor(post);
+      })
+      .then(post => {
+        console.log(post);
+      })
+      .then(err => {
+        console.log(err);
+      })
+
+    /*---------- SECOND VIDEO: building your own promises  ------- */
+
+
+    //good idea create our own promises in our code base
+    const p = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        reject(Error('Is an error an error if you created it on purpose?')); // This error object returns its location/line as well as the message
+      }, 1000);
+    });
+
+    p
+      .then(data => {
+        console.log(data);
+      })
+      .catch(err => {
+        console.error(err);
+
+      });
+
+    /*---------- FIRST VIDEO: promises  ------- */
+
+    // High Level - 
+    console.log('Going to fetch the latest posts from Wes\'s blog')
+    const postPromise = fetch('https://api.sunrise-sunset.org/json?lat=45.4132457&lng=-75.6908846');
+    console.log('Done!');
+    console.log(postPromise);
+
+    //Best Practices-- use chaining and break on different lines don't forget the error
+    postPromise
+      .then(data => data.json())
+      .then(data => { console.log(data) })
+      .catch((err) => {
+        console.error(err);
+      })
+
+    // call back example. similar to .then()
+      // $('a').on('click', function () {
+      //   alert('hey! you! get off of my cloud!')
+      // })
+
+
+    //promise = " I don't have the data yet. Here's an IOU. I'll let you know when we get the info"
+
+  </script>
+</body>
+
+</html>
